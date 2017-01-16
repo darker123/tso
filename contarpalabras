@@ -1,0 +1,56 @@
+#!/bin/bash
+# lowerit
+echo "1.-Mostrar todo 2.-Contar palabras 3.-Contar Caracteres 4.-Cambiar a MAYUSCULAS"
+read res
+case $res in
+	1)
+	echo "ingrese un directorio y archivo"
+	read directorio
+	echo " N°L N°P N°C"
+	wc $directorio
+	;;
+	2)
+	echo "ingrese un directorio y archivo"
+        read directorio
+	echo "las palabras de archivo $directorio son: "
+	wc -w $directorio 
+	;;
+	3)
+	echo "ingrese un directorio y archivo"
+        read directorio
+	echo "los caracteres del archivo $directorio son : "
+	wc -c $directorio
+	;;
+	4)
+	echo -n "MAYUSCULA o minusculas : "
+		read y
+		case $y in
+		m)
+		echo "minusculas"
+		for x in `ls`
+		do
+		if [ ! -f $x ]; then
+		continue
+		fi
+		lc=`echo $x | tr '[A-Z]' '[a-z]'`
+		if [[ $lc != $s ]]; then
+		mv -i $x $lc
+		fi
+		done
+		;;
+		M)
+		echo "MAYUSCULAS"
+		for x in `ls`
+                do
+                if [ ! -f $x ]; then
+                continue
+                fi
+                lc=`echo $x | tr '[a-z]' '[A-Z]'`
+                if [[ $lc != $s ]]; then
+                mv -i $x $lc
+                fi
+                done
+		;;
+		esac
+	;;
+esac
